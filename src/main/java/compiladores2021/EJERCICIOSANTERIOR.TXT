@@ -1,0 +1,90 @@
+grammar compilador;
+
+@header{ 
+package compiladores2021;
+}
+
+// DIGITO : '0' | '1' | '2' | ... ;
+// fragment DIGITO : [0-9] ;  
+
+// fragment HOLA : 'hola' ;
+// fragment CHAU : 'chau' ;
+// SALUDO : HOLA | CHAU ;
+
+// NATURAL : DIGITO+ ;
+
+// ENTERO : '-'? NATURAL ;
+// fragment MAYUSCULA: [A-Z]; 
+// fragment DIGITO: [0-9];
+
+
+
+// PM: MAYUSCULA ([A-Za-z]+);  
+// FO: [A-Za-z]+'.'; 
+// PCPLURAL: 'c'  ([A-Za-z]+) 's';
+// HORACONSIGNA1: ([1][3-5]) ':' ([0-5][0-9]);
+// HORACONSIGNA2:  ('03'':''1'[2-9])|('03'':'[2-5][0-9])|([0][4-9]':'[0-5][0-9])|([1][0]':'[0-5][0-9])|([1][1]':'[0-1][0-9])|([1][1]':'[2][0-7]); 
+// ANOS20002020:'20' ([0-1][0-9] | [2][0]);
+// FECHASMPARES: ([0][1-9]|[0-2][1-9]|[3][0])'/'([0][02468]|[1][02])'/' [0-9]+;
+// FECHASDIAS1223:([1][2-9]|[2][0-3]|[3][0])'/'([0][1-9]|[1][0-2])'/' [0-9]+;
+// WS : [ \t\n\r] -> skip;  
+// OTRO : . ;
+
+
+/*horas entre  03:12  -11:27*/
+// HORARIO:'03:1'[2-9] | '03:' [2-5][0-9] | '0'[4-9]':'[0-5][0-9]  | '10:'[0-5][0-9] |  '11:'[0-1][0-9] | '11:2'[0-7];
+// OTRO : . ;
+// horas : HORARIO { System.out.println("ok -> " + $HORARIO.getText()); } horas
+//       | OTRO { System.out.println(" No reconocido -> |" + $OTRO.getText() + "|"); } horas
+//       | EOF
+//       ; 
+
+
+
+ PA: '(';
+ PC: ')';
+ IGUAL: '=';
+ DIGITO : [0-9] ;  
+ PCOMA: ';';
+ TIPO_DATO: 'int' | 'double'| 'char';
+ COMA: ',';
+ ID: [a-zA-Z_] [a-zA-Z0-9_]*;
+
+ 
+programa: { System.out.println("INICIO"); }instrucciones { System.out.println("FIN"); } EOF;  
+instrucciones: instruccion instrucciones
+             |
+             ; 
+instruccion: declaracion;
+declaracion: TIPO_DATO secvar PCOMA {System.out.println("Encontrado");} 
+           ;  
+secvar: ID igual COMA  secvar  //para ahcer int a,b,c;
+      | ID igual COMA  secvar  //para ahcer int a,b,c;
+      | ID igual    //para ahcer int a,b,c;
+      | ID COMA secvar
+   
+      | ID
+      ;
+igual: IGUAL ID
+     | IGUAL DIGITO
+     ;
+//  b: PA b PC b
+//    | 
+//    ;
+
+
+
+//  s : PM { System.out.println("Palabra mayuscula -> " + $PM.getText()); } s
+//    | FO { System.out.println("Final de oracion-> |" + $FO.getText() + "|"); } s
+//    | PCPLURAL { System.out.println("Con c y plural-> |" + $PCPLURAL.getText() + "|"); } s
+//    | HORACONSIGNA1 { System.out.println(" aa-> |" + $HORACONSIGNA1.getText() + "|"); } s
+//    | HORACONSIGNA2 { System.out.println(" hor2-> |" + $HORACONSIGNA2.getText() + "|"); } s
+//    | ANOS20002020 { System.out.println(" ANOS20002020-> |" + $ANOS20002020.getText() + "|"); } s
+//    | FECHASMPARES { System.out.println(" FECHASMPARES-> |" + $FECHASMPARES.getText() + "|"); } s
+//    | FECHASDIAS1223 { System.out.println(" FECHASDIAS1223-> |" + $FECHASDIAS1223.getText() + "|"); } s
+//    | OTRO { System.out.println(" OTRO-> |" + $OTRO.getText() + "|"); } s
+   
+//    //| OTRO { System.out.println("No reconocido -> |" + $OTRO.getText() + "|"); } s
+   
+//    | EOF
+//    ;

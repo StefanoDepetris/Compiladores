@@ -1,0 +1,30 @@
+Pregunta: si con mi listener veo que un id  no existe en la tabla de simbolos.
+Pero cuando recorro el arbol con el visitor y genero el codigo de 3 direcciones lo tengo en el arbol...
+Esto esta bien? es decir en mi codigo de 3 dimensiones voy a tener esta variable que el listener me reporto 
+como error.
+
+
+
+HAY FORMA DE SABER  QUE TIPO ES? ES DECIR SI ES MASVAR O DEFINICION??.
+poruqe con el  mismo for de abajo me gustaria preguntar sos de tipo definicion?
+COMO DIGO IMPRIMI LO MISMO MENOS CUANDO HAY UN ID(AHI TENGO QUE HACER UN  GENERAR UN VAR TEMP)
+CON ESTE FOR 
+
+   for (int hijo = 0; hijo < ctx.getChildCount(); hijo++) {
+    //         addTextoNuevoNodo();           
+    //         visit(ctx.getChild(hijo));
+    //     }
+
+
+////////////////////////////////////////////
+
+char a=4,b,c;   ---------> t0=4 t1 t2 (Entonces solo tengo que cambiar el id no los que es la deficion)
+
+En esta sola linea tenemos ID definicion y masvar.
+
+declaracion: TIPO_DATO ID  definicion masvar PCOMA 
+
+en ID tegno que llamar al metodo generar varTemp y en def tengo qeu ver si no hay otro id.
+Tengo que trabajar todo por separado?? es decir hacer un visit definicion un visitmavar y un visitdeclaracion?
+
+//LO QUE ME GUSTARIA ES CON UN FOR RECORRER LOS HIJOS Y PREGUNTAR QUE TIPO SON.

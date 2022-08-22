@@ -1,0 +1,48 @@
+Expresiones Regulares (regexp)
+
+Recorrido iterativo sobre secuencias de caracteres
+
+WS -> WhiteSpace
+
+Shell (Bash) --> * -> 0 o más veces de algo (no WS)
+                 ? -> 1 caracter cualquiera (no WS)
+                 
+  ej: $ cp .??* nuevoDir
+
+grep? awk?
+
+ANTLR -->
+ Metacaracteres
+   . -> cualquier caracter
+   ? -> 0 o 1 caracter
+   * -> 0 o más caracteres
+   + -> 1 o más caracteres
+ 
+ Operaciones
+   a b   -> yuxtaposición  -> 'i' 'n' 't'
+   a | b -> selección      -> '2' | 'x'
+   (a b) -> agrupación
+   [a-b] -> secuencia (por extensión) solo "-" es etacaracter
+            [ \t\n]
+            [a-z] [A-Z] [A-Za-z] [AEIOU] [k-m]
+            [0-9] [02468]
+            rangos numéricos -> horas día ([01][0-9])|('2'[0-3])
+            [-+*/]
+    ^a   -> negación  -> ^[.,;:]
+
+-----------------
+Ejercitación
+
+Dado un texto con palabras en oraciones, números, horas en formato HH:MM y fechas en formato DD/MM/YYYY, escribir las regexp que hagan match con:
+1) Palabras con Mayúscula inicial                       LISTO
+2) Palabras fin de oración                              LISTO
+3) Palabras en plural que comienzan con letra           LISTO
+4) Horas entre las 13:00 y 15:59                        LISTO
+5) Horas entre las 03:12 y 11:27                        LISTO
+6) Fechas de años entre 2000 y 2020                     LISTO
+7) Fechas de meses pares                                LISTO
+8) Fechas de días entre el 12 y 23                      LISTO
+
+
+
+

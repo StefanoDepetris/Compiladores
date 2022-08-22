@@ -1,0 +1,9 @@
+*~
+#*
+target
+.antlr
+compilador*.java
+*.out
+*.class
+*.jar
+*.tokens
