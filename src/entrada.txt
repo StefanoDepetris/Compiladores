@@ -1,1 +1,29 @@
-int x=8,p;
+void funcion(int x,int y);
+int x;
+double o;
+x=x+o;
+x=o;
+double x = y;
+char a=4,b,c;
+char a1=4,b2,c3;
+char b;
+double a4=b;
+for( x = 0; x < 10; x = x + 1)
+{
+    int w;
+}   
+if(a==4){
+    a=2;
+    sad=434;
+}
+else {
+   funcion('sda',a+1);
+}
+
+void funcion(int x,int y){
+    int i=0;
+    while(i<10)
+     {
+        i=i+1;
+    }
+}

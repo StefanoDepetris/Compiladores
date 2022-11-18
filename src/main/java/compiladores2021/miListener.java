@@ -56,12 +56,6 @@ public class miListener extends compiladorBaseListener {
      @Override
      public void enterI_while(I_whileContext ctx) {
         System.out.println("\n @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@   WHILE   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-
-        // if(ctx.instruccion()!=null){
-        //     tabla.addContexto();
-        // }
-       
-        // tabla.addContexto();
         super.enterI_while(ctx);
      }
 
@@ -76,13 +70,6 @@ public class miListener extends compiladorBaseListener {
      @Override
      public void enterI_for(I_forContext ctx) {
         System.out.println(" \n @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  FOR   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-
-        // if( ctx.instruccion()!=null){
-        //     System.out.println("Se agrego un nuevo contexto %%%%%%%%%%%%%%%%%%%%%");
-        //     tabla.addContexto();
-        // }       
-        // tabla.addContexto();
-
         super.enterI_for(ctx);
      }
      @Override
@@ -97,10 +84,6 @@ public class miListener extends compiladorBaseListener {
      public void enterI_if(I_ifContext ctx) {
         tabla.recorrerContext();
         System.out.println("\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  IF   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-    
-        // tabla.addContexto();
-  
-
         super.enterI_if(ctx);
      }
 
@@ -125,15 +108,12 @@ public class miListener extends compiladorBaseListener {
      @Override
      public void enterDefFuncion(DefFuncionContext ctx) {
         System.out.println("\n%%%%%%%%%%%%%%% DEF FUNCION   %%%%%%%%%%%%%");
-        // System.out.println("Se agrego un nuevo contexto POR FUNCION");
          tabla.addContexto();
          super.enterDefFuncion(ctx);
      }
 
      @Override
      public void exitParametro(ParametroContext ctx) {
-
-
         if(ctx.parent instanceof DefFuncionContext){
             while(ctx.ID()!=null){
 
@@ -168,21 +148,11 @@ public class miListener extends compiladorBaseListener {
                     Id id=new Variable((ctx.ID()).toString(),tipo);    //Se crea el parametro
                     System.out.println("Se agrego un parametro a la lista  " +id.getTipo()+"  "+ id.getId());
                     parametros.add(id);     //solo se agrega ala lista 
-
-                    // if(tabla.buscarSimboloLocal(id)){
-                    //     System.out.println("ID YA EXISTE EN CONTEXTO ACTUAL");
-                    // }
-                    // else{
-                    //     // tabla.agregarAlContextoActual(id);
-                        
-                    //     // tabla.recorrerContext();
-                    // }
                 }
                    
     
                 if(ctx.parametro()!=null ){
                     ctx.children=ctx.parametro().children;//para iterar
-                    // ctx.masvar().copyFrom(ctx.masvar().masvar());
                 }else if(ctx.parametro()==null){
                     break;
                 }
@@ -218,7 +188,6 @@ public class miListener extends compiladorBaseListener {
             }else{
                  
             }
-
             while(ctx.parametro_Inicializado()!=null){
 
                 if(ctx.parametro_Inicializado().ladoA()!=null){
@@ -243,12 +212,6 @@ public class miListener extends compiladorBaseListener {
                         } catch (Exception e) {
                             //TODO: handle exception
                         }
-                      
-                        
-                        //  if(parametro.getTipo() ==TipoDato.CHAR && (ctx.parametro_Inicializado().ladoA().iCHAR()==null)){
-                        //     System.out.println("Error tipo dato parametro. ");
-                        // }
-                    
                         if(ctx.parametro_Inicializado().ladoA().ID()!=null){
                             //Tengo que ver si esta en la tabla de simbolos.
                             if(!tabla.buscarSimbolo(ctx.parametro_Inicializado().ladoA().ID().getText().toString())){
@@ -263,22 +226,16 @@ public class miListener extends compiladorBaseListener {
                         }
                             
                     numero_param++;
-                }
-            
-
-
+                }    
                 if(ctx.parametro_Inicializado().parametro_Inicializado()!=null){
                     ctx.parametro_Inicializado().children=ctx.parametro_Inicializado().parametro_Inicializado().children;
                 }else{
                     break;
                 }
-               ;
-                
-              
+               ; 
             }
             if(numero_param!=parametros_por_funcion.get(ctx.ID().toString()).size()){
                 int diferencia=parametros_por_funcion.get(ctx.ID().toString()).size()-numero_param;
-                // System.out.println("dinosaurio"+parametros_por_funcion.get(ctx.ID().toString()).size()  +"   " +numero_param);
 
                 if(diferencia<0){
                     System.out.println("Error numero de parametro: Sobra "+ diferencia*-1 );
@@ -303,10 +260,6 @@ public class miListener extends compiladorBaseListener {
         System.out.println("@@@@@DECLARACION DE FUNCION @@@@@@@ ");
         System.out.println(" ");
         parametros=new ArrayList<>();
-        // parametros_por_funcion=new HashMap<>();
-        // parametros=new ArrayList<>();
-        // parametros_por_funcion=new HashMap<>();
-
          super.enterDeclaracionFuncion(ctx);
      }
      @Override
@@ -331,32 +284,23 @@ public class miListener extends compiladorBaseListener {
                 Id idParametro=new Variable((ctx.parametro().ID()).toString(),tipo);    //Se crea el parametro
                 System.out.println("PARAMETRO NUEVO " +idParametro.getTipo()+"  "+ idParametro.getId());
             }
-               
-
-
+            
             if(ctx.parametro().parametro()!=null ){
                 ctx.parametro().children=ctx.parametro().parametro().children;//para iterar
-                // ctx.masvar().copyFrom(ctx.masvar().masvar());
+        
             }else if(ctx.parametro().parametro()==null){
                 break;
-            }
-          
-           
+            }     
         }
-
-
         if(parametros.size()!=0 && parametros!=null){
             parametros_por_funcion.put(ctx.ID().toString(), parametros);
            
             System.out.println("La cantidad de parametros en esta funcion "+ ctx.ID().toString()+" es: " +  parametros_por_funcion.get(ctx.ID().toString()).size());
         }
-
         System.out.println("@@@@ EXIT DECLARACION DE FUNCION @@@@@@@ ");
 
      }
-
-  
-    
+ 
      @Override
      public void exitBloque(BloqueContext ctx) {
         //  tabla.delContexto();
@@ -544,8 +488,6 @@ public class miListener extends compiladorBaseListener {
 
       @Override
       public void enterSecvar(SecvarContext ctx) {
-        //   System.out.println("\n##########################EnterSecVar###############################");
-        //  System.out.println("El texto de Secvar es-------->"+ctx.getText());
           super.enterSecvar(ctx);
       }
       @Override
@@ -563,11 +505,7 @@ public class miListener extends compiladorBaseListener {
          token++;
 
     }
-  
-            
-         
-
-        
+       
      public void setTipo(String node){
 
         switch(node){
